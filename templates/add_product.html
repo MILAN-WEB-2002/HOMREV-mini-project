@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product - Home-Rev</title>
+
+    <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f6f4;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .site-name {
+            font-size: 28px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .right-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .right-menu a:hover {
+            color: #007799;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 3rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        input[type="file"] {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        input[type="file"]:focus {
+            outline: none;
+            border-color: #007799;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            font-size: 1rem;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .flash-messages {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .flash-messages .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .flash-messages .danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            color: #888;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            main {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="left-menu">
+            <span class="site-name">Home-Rev</span>
+        </div>
+        <nav class="right-menu">
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Add New Product</h1>
+
+        <!-- Display flash messages for success or error -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <p class="{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('add_product') }}" enctype="multipart/form-data">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter product name" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" placeholder="Describe the product" required></textarea>
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" placeholder="Enter price in ₹" required>
+
+            <label for="image">Upload Image (JPEG only):</label>
+            <input type="file" id="image" name="image" accept="image/jpeg" required>
+
+            <button type="submit">Add Product</button>
+        </form>
+    </main>
+
+    <footer>
+        &copy; 2024 Home-Rev. All rights reserved.
+    </footer>
+
+    <script>
+        // Automatically remove flash messages after 3 seconds
+        setTimeout(() => {
+            const flashMessages = document.querySelector('.flash-messages');
+            if (flashMessages) {
+                flashMessages.style.display = 'none';
+            }
+        }, 3000);
+    </script>
+
+</body>
+</html>

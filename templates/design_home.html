@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Designs - Home-Rev</title>
+    <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f6f4;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .left-menu .site-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-left: 10px;
+            color: #000;
+        }
+
+        .right-menu a {
+            margin-left: 20px;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .right-menu a:hover {
+            color: #007799;
+        }
+
+        .right-menu input[type="text"] {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-left: 20px;
+        }
+
+        /* Main Section Styling */
+        .room-designs {
+            display: flex;
+            padding: 3rem 40px;
+        }
+
+        /* Room Filters Styling */
+        .room-filters {
+            width: 200px;
+            padding-right: 20px;
+        }
+
+        .room-filters h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .room-filters ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .room-filters li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Design Cards Container */
+        .design-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex: 1;
+        }
+
+        /* Individual Design Card Styling */
+        .design-card {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .design-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .design-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .design-card h3 {
+            margin-top: 15px;
+            font-size: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .design-card p.price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007799;
+            margin-top: 10px;
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="left-menu">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span class="site-name">Home-Rev</span>
+        </div>
+        <nav class="right-menu">
+            <a href="#">How It Works</a>
+            <a href="#">Our Designs</a>
+            <a href="#">Explore</a>
+            <a href="#">Shop</a>
+            <a href="#">Careers</a>
+            <input type="text" placeholder="Search...">
+            <a href="#" class="get-started">Get Started</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <div class="room-designs">
+        <!-- Room Filters -->
+        <div class="room-filters">
+            <h3>ROOMS</h3>
+            <ul>
+                <li><input type="checkbox"> Bathroom</li>
+                <li><input type="checkbox"> Bedroom</li>
+                <li><input type="checkbox"> Dining Room</li>
+                <li><input type="checkbox"> Home Office</li>
+                <li><input type="checkbox"> Kids Bedroom</li>
+                <li><input type="checkbox"> Kitchen</li>
+                <li><input type="checkbox"> Living Room</li>
+                <li><input type="checkbox"> Outdoor</li>
+            </ul>
+            <h3>INTERIOR STYLES</h3>
+            <ul>
+                <li><input type="checkbox"> Modern</li>
+                <li><input type="checkbox"> Minimalist</li>
+                <li><input type="checkbox"> Mid-Century</li>
+            </ul>
+        </div>
+
+        <!-- Design Cards -->
+        <div class="design-cards">
+            {% for project in projects %}
+            <a href="{{ url_for('project_details', project_id=project.id) }}" style="text-decoration: none; color: inherit;">
+                <div class="design-card">
+                    <img src="{{ url_for('static', filename=project.image_path) }}" alt="{{ project.name }}">
+                    <h3>{{ project.name }}</h3>
+                    <p class="price">Price: ₹{{ project.price }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2024 Home-Rev. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-Rev</title>
+    
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f6f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .site-name {
+            font-size: 28px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #007799;
+        }
+
+        nav .btn {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        nav .btn:hover {
+            background-color: #555;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 85vh;
+            background-color: #f0ece3; /* Light beige background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #666;
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .hero .btn {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            background-color: #555;
+        }
+
+        /* Content Box */
+        .content {
+            padding: 60px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content-box {
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            text-align: center;
+        }
+
+        .content-box h2 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .content-box p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #888888;
+            border-top: 1px solid #ddd;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="left-menu">
+            <span class="site-name">Home-Rev</span>
+        </div>
+        <nav class="right-menu">
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{ url_for('add_product') }}" class="btn">Add New Project</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Your Dream Home, One Renovation at a Time.</h1>
+        <p>At Home-Rev, we believe every home tells a unique story. Our platform empowers users to create and manage renovation projects effortlessly.</p>
+        <a href="{{ url_for('design_your_home') }}" class="btn">Design Your Home</a>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div class="content-box">
+            <h2>Our Commitment to Excellence</h2>
+            <p>Experience seamless project management with Home-Rev, where user collaboration and design innovation come together to transform spaces beautifully.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2024 Home-Rev
+    </footer>
+
+</body>
+
+</html>

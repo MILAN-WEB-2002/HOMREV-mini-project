@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.name }} - Details</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5efe6; /* light beige */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Project Details Container */
+        .project-details {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .project-details img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Project Title and Uploader */
+        .project-details h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4e342e;
+            margin-bottom: 10px;
+        }
+        .project-details .uploader {
+            font-size: 14px;
+            color: #7e675e;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* Chat Button */
+        .chat-button {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #8e6e53;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .chat-button:hover {
+            background-color: #795942;
+            transform: translateY(-2px);
+        }
+
+        /* Description and Price */
+        .description-section {
+            color: #4e342e;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        .description-section h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .description-section p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #d4a373;
+            font-weight: 700;
+            margin: 25px 0;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .reviews-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4e342e;
+        }
+        .review {
+            margin-bottom: 15px;
+        }
+        .review .reviewer {
+            font-weight: 600;
+            font-size: 14px;
+            color: #7e675e;
+        }
+        .review p {
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* Review Form */
+        .review-form {
+            margin-top: 20px;
+        }
+        .review-form textarea {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            padding: 12px;
+            font-size: 15px;
+            resize: vertical;
+        }
+        .review-form button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #8e6e53;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .review-form button:hover {
+            background-color: #795942;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #4e342e;
+            color: #f5f5f5;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Project Details Section -->
+    <div class="project-details">
+        <img src="{{ url_for('static', filename=project.image_path) }}" alt="{{ project.name }}">
+        <h2>{{ project.name }}</h2>
+        <p class="uploader">Uploaded by: {{ project.user.username if project.user else "Unknown User" }}</p>
+
+        <!-- Chat Button -->
+        {% if project.user and project.user != current_user %}
+            <a href="{{ url_for('chat', project_id=project.user.id) }}" class="chat-button">Chat with Uploader</a>
+        {% endif %}
+
+        <div class="description-section">
+            <h3>Description</h3>
+            <p>{{ project.description }}</p>
+        </div>
+
+        <p class="price">Price: ₹{{ project.price }}</p>
+
+        <div class="reviews-section">
+            <h3>Reviews</h3>
+            {% if reviews %}
+                {% for review in reviews %}
+                    <div class="review">
+                        <p class="reviewer">{{ review.user.username if review.user else "Anonymous" }}</p>
+                        <p>{{ review.content }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No reviews yet.</p>
+            {% endif %}
+
+            <!-- Review Submission Form -->
+            <div class="review-form">
+                <h4>Leave a Review</h4>
+                <form action="{{ url_for('submit_review', project_id=project.id) }}" method="POST">
+                    <textarea name="review_content" rows="4" placeholder="Write your review here..." required></textarea>
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Home-Rev. All rights reserved.
+    </footer>
+</body>
+</html>

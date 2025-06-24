@@ -1,0 +1,53 @@
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <button onclick="display()">clickme</button>
+    <h1 id="display-head">test</h1>
+<script>
+    function show()
+    {
+        console.log("button clicked")
+
+    }
+    const e=10
+    if(e%2==0)
+    {
+        console.log("number is even")
+    }else{
+        console.log("number is odd")
+    }
+    for(var i=0;i<10;i++)
+    {
+        console.log(i)
+    }
+    var array=["apple","orange",32]
+    console.log(arr)
+
+    var person=[{
+        name:"sv",
+        age:21,
+        place:"kozhikode"
+    },
+    {
+        name:"akshay",
+        age:20,
+        place:("kochi")
+
+    }]
+    console.log(person.name)
+
+    function display()
+    {
+        var input=document.getElementById("inp").value
+        document.getElementById('display-head').innerHTML=input
+    }
+
+    
+</script>
+</body>
+</html>

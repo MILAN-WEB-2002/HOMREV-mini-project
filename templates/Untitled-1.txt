@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h2 class="title">HOME-REV</h2>
+      <h3 class="subtitle">Login Here</h3>
+      <form class="login-form" method="post">
+        <input name="username" type="text" placeholder="Email or Phone" class="input-field">
+        <input name="password" type="password" placeholder="Password" class="input-field">
+        <button class="login-button">Log In</button>
+      </form>
+      <div class="social-login">
+        <button class="social-button google">Google</button>
+        <button class="social-button facebook">Facebook</button>
+      </div>
+      <a href="/register" >signup</a>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->

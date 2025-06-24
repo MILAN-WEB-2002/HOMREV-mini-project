@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Chat with {{ project.name }}</h2>
+
+  <div id="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;">
+    {% for message in messages %}
+      <div class="message">
+        <strong>{{ message.sender.username }}:</strong> {{ message.content }}
+        <span class="timestamp">{{ message.timestamp }}</span>
+      </div>
+    {% endfor %}
+  </div>
+
+  <textarea id="message-input" name="message" required placeholder="Type your message here..."></textarea>
+  <button id="send-button">Send</button>
+
+  <script type="text/javascript">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    var room = chat_room.id;
+    var username = '{{ session["username"] }}';
+
+    // Join the chat room on page load
+    socket.emit('join_room', { 'room': room, 'username': username });
+
+    // Listen for new messages
+    socket.on('receive_message', function(data) {
+      var chatBox = document.getElementById('chat-box');
+      chatBox.innerHTML += '<div><strong>' + data.username + ':</strong> ' + data.message + '</div>';
+      chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the latest message
+    });
+
+    // Send message when the user clicks "Send"
+    document.getElementById('send-button').addEventListener('click', function() {
+      var message = document.getElementById('message-input').value;
+      if (message.trim()) {
+        socket.emit('send_message', { 'room': room, 'message': message, 'username': username });
+        document.getElementById('message-input').value = '';  // Clear the input after sending
+      }
+    });
+  </script>
+{% endblock %}

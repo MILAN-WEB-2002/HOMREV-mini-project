@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-Rev Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f7f6f4; /* Light background */
+        }
+
+        /* Container Styles */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Form Container Styles */
+        .form-container {
+            background-color: #ffffff; /* White background for contrast */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            width: 400px; /* Fixed width for better layout */
+            text-align: center;
+        }
+
+        /* Title Styles */
+        h2 {
+            font-size: 28px;
+            color: #333; /* Darker text for better contrast */
+            margin-bottom: 20px;
+        }
+
+        /* Input Group Styles */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        /* Input Field Styles */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Button Styles */
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #333; /* Dark button */
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555; /* Darker gray on hover */
+        }
+
+        /* Link Styles */
+        .link {
+            margin-top: 10px;
+            display: block;
+            color: #007799; /* Link color */
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Registration Form</h2>
+            <form method="post">
+                <div class="input-group">
+                    <input name="username" type="text" placeholder="Your Name" required>
+                    <input name="email" type="email" placeholder="Your Email" required>
+                </div>
+                <div class="input-group">
+                    <input name="password" type="password" placeholder="Your Password" required>
+                    <input name="confirm_password" type="password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit">Register</button>
+                <a href="/login" class="link">Already have an account? Log In</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
